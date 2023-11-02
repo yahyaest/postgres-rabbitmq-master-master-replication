@@ -1,0 +1,95 @@
+version: "3.2"
+services:
+
+  front2:
+    container_name: front2
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    stdin_open: true
+    ports:
+      - 3001:3000
+    depends_on:
+      - postgres2
+    volumes:
+      - ./front:/app
+    env_file:
+      - front/.env
+    entrypoint: /app/entrypoint.sh
+    networks:
+      - rabbitmq_network2
+
+  python_alpine2:
+    container_name: 'python_alpine2'
+    # build: .
+    image: python_alpine1:0.1
+    restart: unless-stopped
+    # ports:
+    #     - 7000:5000
+    volumes:
+        - ./scripts:/scripts
+    networks:
+        - rabbitmq_network2
+  
+  django2:
+    container_name: 'django2'
+    build:
+      context: ./django
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=psql://postgres:postgres@postgres2:5432/crypto
+    command: sh -c "./entrypoint.sh"
+    ports:
+        - 5001:5000
+    volumes:
+        - ./django:/code
+    networks:
+        - rabbitmq_network2
+
+  rabbitmq2:
+    image: rabbitmq:management
+    container_name: 'rabbitmq2'
+    ports:
+        - 5673:5672
+        - 15673:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - rabbitmq_network2
+  
+  adminer2:
+    image: adminer
+    container_name: 'adminer2'
+    ports:
+        - 8090:8080
+    restart: unless-stopped
+    networks:
+        - rabbitmq_network2
+
+
+  postgres2:
+    image: postgres:14.8
+    container_name: 'postgres2'
+    restart: unless-stopped
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=crypto
+        - POSTGRES_HOST_AUTH_METHOD=md5
+    command: ["postgres", "-c", "password_encryption=scram-sha-256"]
+    volumes:
+        - postgresql:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    networks:
+        - rabbitmq_network2
+
+volumes:
+    postgresql:
+
+networks:
+  rabbitmq_network2:
+    driver: bridge

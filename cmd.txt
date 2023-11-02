@@ -1,0 +1,71 @@
+docker network connect bridge alpine4
+docker network inspect bridge
+
+
+
+
+CREATE TABLE certificates (
+  id SERIAL PRIMARY KEY,
+  owner VARCHAR(100) NOT NULL,
+  common_name VARCHAR(100) NOT NULL,
+  serial_number VARCHAR(100) NOT NULL,
+  fingerprint VARCHAR(100) NOT NULL,
+  cert_b64 VARCHAR(5000) NOT NULL,
+  expiration_date VARCHAR(100) NOT NULL,
+  CONSTRAINT owner_common_name_unique UNIQUE (owner, common_name)
+);
+
+ALTER TABLE certificates
+ALTER COLUMN cert_b64 TYPE VARCHAR(5000);
+
+
+INSERT INTO certificates (owner, common_name, serial_number, fingerprint, cert_b64, expiration_date)
+VALUES ('John Doe', 'example.com', '123456789', 'abcdef123456', 'base64_certificate_data', '2023-12-31');
+
+DELETE FROM certificates
+WHERE owner = 'John Doe' AND common_name = 'example.com';
+
+DELETE FROM certificates;
+
+
+SELECT trigger_name, event_object_table, event_manipulation, action_statement
+FROM information_schema.triggers;
+
+        trigger_name        | event_object_table | event_manipulation |               action_statement                
+----------------------------+--------------------+--------------------+-----------------------------------------------
+ certificate_notify_trigger | certificates       | INSERT             | EXECUTE FUNCTION notify_certificate_changes()
+ certificate_notify_trigger | certificates       | DELETE             | EXECUTE FUNCTION notify_certificate_changes()
+ certificate_notify_trigger | certificates       | UPDATE             | EXECUTE FUNCTION notify_certificate_changes()
+(3 rows)
+
+
+DROP TRIGGER [IF EXISTS] trigger_name ON table_name [CASCADE | RESTRICT];
+DROP TRIGGER IF EXISTS certificate_notify_trigger ON certificates;
+
+
+ALTER SEQUENCE certificates_id_seq RESTART WITH 1;
+ALTER SEQUENCE
+
+
+CREATE SEQUENCE odd_id_seq START 1 INCREMENT 2;
+ALTER TABLE certificates
+ALTER COLUMN id SET DEFAULT nextval('odd_id_seq');
+
+// display
+SELECT schemaname, sequencename, increment_by, min_value, max_value, start_value
+FROM pg_sequences;
+
+ALTER SEQUENCE odd_id_seq RESTART WITH 1;
+ALTER SEQUENCE even_id_seq RESTART WITH 1;
+DROP SEQUENCE odd_id_seq CASCADE;
+
+
+
+docker cp network2/scripts/certs.sql  postgres2:/tmp
+root@02e73560ec99:/# cp /tmp/certs.sql  /var/lib/postgresql/data/
+root@02e73560ec99:/# psql -U postgres -d crypto < var/lib/postgresql/data/certs.sql 
+
+
+https://hackernoon.com/replicate-postgresql-databases-using-async-python-and-rabbitmq-for-high-availability
+https://www.rabbitmq.com/tutorials/tutorial-one-python.html
+https://docs.docker.com/network/network-tutorial-standalone/
