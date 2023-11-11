@@ -20,17 +20,17 @@ services:
     networks:
       - rabbitmq_network2
 
-  python_alpine2:
-    container_name: 'python_alpine2'
-    # build: .
-    image: python_alpine1:0.1
-    restart: unless-stopped
-    # ports:
-    #     - 7000:5000
-    volumes:
-        - ./scripts:/scripts
-    networks:
-        - rabbitmq_network2
+  # python_alpine2:
+  #   container_name: 'python_alpine2'
+  #   # build: .
+  #   image: python_alpine1:0.1
+  #   restart: unless-stopped
+  #   # ports:
+  #   #     - 7000:5000
+  #   volumes:
+  #       - ./scripts:/scripts
+  #   networks:
+  #       - rabbitmq_network2
   
   django2:
     container_name: 'django2'
@@ -40,6 +40,8 @@ services:
     restart: unless-stopped
     environment:
       - DATABASE_URL=psql://postgres:postgres@postgres2:5432/crypto
+      - DATABASE_HOST=172.17.0.9
+      - DATABASE_HOST_LIST=172.17.0.8,172.17.0.9
     command: sh -c "./entrypoint.sh"
     ports:
         - 5001:5000
@@ -48,26 +50,33 @@ services:
     networks:
         - rabbitmq_network2
 
-  rabbitmq2:
+  rabbitmq_node20:
+    hostname: rabbitmq_node20
     image: rabbitmq:management
-    container_name: 'rabbitmq2'
+    container_name: rabbitmq_node20
     ports:
         - 5673:5672
         - 15673:15672
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ./rabbitmq:/host
+    # entrypoint: /host/entrypoint.sh
+    environment:
+        - RABBITMQ_ERLANG_COOKIE=rabbitcookie
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
     networks:
         - rabbitmq_network2
   
-  adminer2:
-    image: adminer
-    container_name: 'adminer2'
-    ports:
-        - 8090:8080
-    restart: unless-stopped
-    networks:
-        - rabbitmq_network2
+  # adminer2:
+  #   image: adminer
+  #   container_name: 'adminer2'
+  #   ports:
+  #       - 8090:8080
+  #   restart: unless-stopped
+  #   networks:
+  #       - rabbitmq_network2
 
 
   postgres2:
@@ -79,7 +88,7 @@ services:
         - POSTGRES_PASSWORD=postgres
         - POSTGRES_DB=crypto
         - POSTGRES_HOST_AUTH_METHOD=md5
-    command: ["postgres", "-c", "password_encryption=scram-sha-256"]
+    command: postgres -c max_connections=20000 -c shared_buffers=1GB -c password_encryption=scram-sha-256
     volumes:
         - postgresql:/var/lib/postgresql/data
     ports:

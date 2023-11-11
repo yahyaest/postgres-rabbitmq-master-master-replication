@@ -57,7 +57,7 @@ export default function Certificate() {
   return (
     <div className="flex flex-col">
       <header className="flex justify-between p-5 bg-blue-400">
-        <div></div>
+        <div className="font-bold text-white">ENV_1</div>
         <div className="flex">
           <span className="font-bold text-white bg-red-500 rounded-full p-1 mx-2">
             {certList ? `${certCount}` : "0"}

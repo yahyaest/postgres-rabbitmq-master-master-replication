@@ -1,6 +1,6 @@
 sql= ""
 
-for x in range(1000):
+for x in range(10):
     owner = f"owner_{x}"
     common_name = f"common_name_{x}"
     sql = sql + f"""
@@ -8,5 +8,5 @@ for x in range(1000):
     VALUES ('{owner}', '{common_name}' , '123456789', 'abcdef123456', 'base64_certificate_data', '2023-12-31');
     """ + '\n'
 
-with open("./certs.sql", "w") as f:
+with open("./certs_10.sql", "w") as f:
     f.write(sql)

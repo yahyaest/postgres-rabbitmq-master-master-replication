@@ -34,9 +34,14 @@ ALLOWED_HOSTS = ['*']
 # Settings from environment
 env = environ.Env(
     DATABASE_URL=(str, 'psql://postgres:postgres@postgres:5432/crypto'),
-)
-DATABASE_URL = env('DATABASE_URL')
+    # DATABASE_HOST=(str, 'postgres'),
+    # DATABASE_HOST_LIST=(str, 'postgres,172.17.0.9'),
 
+)
+
+DATABASE_URL = env('DATABASE_URL')
+# DATABASE_HOST = env('DATABASE_HOST')
+# DATABASE_HOST_LIST = env('DATABASE_HOST_LIST')
 
 
 # Application definition
@@ -149,6 +154,17 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '[%(asctime)s] [%(name)s] %(levelname)s::(%(process)d %(threadName)s)::%(module)s:%(lineno)d - %(message)s - %(msecs)d'
+        },
+    },
+}
 
 # Wait for postgres to be ready
 count = 1
