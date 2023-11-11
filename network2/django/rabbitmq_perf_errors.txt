@@ -1,0 +1,16 @@
+connection to server at "172.17.0.9", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+connection to server at "172.17.0.8", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+connection to server at "172.17.0.9", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+connection to server at "172.17.0.9", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+connection to server at "172.17.0.9", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+(320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")

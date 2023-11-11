@@ -5,7 +5,7 @@ WORKDIR /install
 COPY requirements.txt /requirements.txt
 
 
-RUN apk --no-cache update && apk add curl postgresql-dev gcc python3-dev musl-dev libffi-dev build-base alpine-sdk \
+RUN apk --no-cache update && apk add curl postgresql-dev uwsgi uwsgi-python3 gcc python3-dev musl-dev libffi-dev build-base alpine-sdk \
     && pip install --upgrade pip \
     && pip install --prefix=/install --no-warn-script-location -r /requirements.txt \
     && find /install \
@@ -24,7 +24,7 @@ RUN apk --no-cache update && apk add curl postgresql-dev gcc python3-dev musl-de
 
 FROM python:3.11-alpine3.17
 COPY --from=0 /install /usr/local
-RUN apk --no-cache add libpq libstdc++ gcc libgcc linux-headers
+RUN apk --no-cache add libpq libstdc++ gcc libgcc linux-headers uwsgi uwsgi-python3
 
 RUN mkdir /code
 WORKDIR /code
@@ -35,6 +35,7 @@ RUN pip install --upgrade pip
 # ENV PYTHONPATH=/code
 ENV PYTHONUNBUFFERED=0
 
+# COPY entrypoint.sh /entrypoint.sh
 # RUN chmod 777 /code/entrypoint.sh
 
 CMD ["sh", "-c", "tail -f /dev/null"]
