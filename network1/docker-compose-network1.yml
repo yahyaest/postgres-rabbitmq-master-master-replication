@@ -39,8 +39,11 @@ services:
     restart: unless-stopped
     environment:
       - DATABASE_URL=psql://postgres:postgres@postgres:5432/crypto
-      - DATABASE_HOST=172.17.0.8
-      - DATABASE_HOST_LIST=172.17.0.8,172.17.0.9
+      - DATABASE_HOST=172.40.0.20
+      - DATABASE_HOST_LIST=172.40.0.20,172.40.0.21,172.40.0.22
+      - RABBITMQ_HOST=172.40.0.30
+      - RABBITMQ_HOST_LIST=172.40.0.30,172.40.0.31,,172.40.0.32
+      - SOURCE_ID=postgres_env1
     command: sh -c "./entrypoint.sh"
     ports:
         - 5000:5000
@@ -65,9 +68,32 @@ services:
         - RABBITMQ_ERLANG_COOKIE=rabbitcookie
         - RABBITMQ_DEFAULT_USER=admin
         - RABBITMQ_DEFAULT_PASS=admin
+    extra_hosts:
+      - "rabbitmq_node20:172.40.0.31"
+      - "rabbitmq_node30:172.40.0.32"
     networks:
         - rabbitmq_network1
   
+  rabbitmq-client:
+    container_name: 'rabbitmq-client'
+    build:
+      context: ./rabbitmq_client
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=172.40.0.20
+      - RABBITMQ_HOST=172.40.0.30
+      - RABBITMQ_HOST_LIST=172.40.0.30,172.40.0.31,172.40.0.32
+      - RABBITMQ_QUEUE=crypto1
+      - RABBITMQ_ROUTING_KEY=key_crypto1
+      - RABBITMQ_ROUTING_KEY_LIST=key_crypto1,key_crypto2,key_crypto3
+      - SOURCE_ID=postgres_env1
+    command: sh -c "./entrypoint.sh"
+    volumes:
+        - ./rabbitmq_client:/code
+    networks:
+        - rabbitmq_network1
+
   # adminer:
   #   image: adminer
   #   container_name: 'adminer'
@@ -90,6 +116,7 @@ services:
     command: postgres -c max_connections=20000 -c shared_buffers=1GB -c password_encryption=scram-sha-256
     volumes:
         - postgresql:/var/lib/postgresql/data
+        - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5433:5432
     networks:

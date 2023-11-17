@@ -12,6 +12,8 @@ echo "172.17.0.2 rabbitmq_node10" >> /etc/hosts
 echo "172.17.0.3 rabbitmq_node20" >> /etc/hosts
 
 
-!!!!!!!!!!!!!!!!!!!!!add hostname to docker service!!!!!!!!!!!!!!!!!!!!!!!!
-rabbitmq_node1:
- hostname: rabbitmq_node1
+!!!!!!!!!!!!!!!!!!!!!add hostname and extra host to docker service!!!!!!!!!!!!!!!!!!!!!!!!
+rabbitmq_node20:
+ hostname: rabbitmq_node20
+ extra_hosts:
+     - "rabbitmq_node10:172.40.0.30"

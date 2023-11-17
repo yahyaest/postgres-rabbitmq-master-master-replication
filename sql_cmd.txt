@@ -1,0 +1,107 @@
+### Add new superuser
+docker exec -it postgres2 psql -U postgres -d crypto -c "CREATE USER postgres2 WITH PASSWORD 'postgres';"
+docker exec -it postgres2 psql -U postgres -d crypto -c "GRANT ALL PRIVILEGES ON TABLE certificates TO postgres2;"
+docker exec -it postgres2 psql -U postgres2 -d crypto -c "SELECT * FROM certificates;"
+docker exec -it postgres2 psql -U postgres -d crypto -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA 
+public TO postgres2;"
+docker exec -it postgres2 psql -U postgres -d crypto -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO postgres2;"
+
+# Or simply
+docker exec -it postgres2 psql -U postgres -d crypto -c "CREATE USER postgres2 WITH PASSWORD 'postgres';"
+docker exec -it postgres2 psql -U postgres -d crypto -c "ALTER USER postgres2 WITH SUPERUSER;"
+docker exec -it postgres2 psql -U postgres -d crypto -c "SELECT rolname FROM pg_roles WHERE rolsuper = true;"
+
+
+### Pass session
+CREATE OR REPLACE FUNCTION usp_fetch_current_setting()
+    RETURNS text
+    LANGUAGE plpgsql
+    AS $function$
+    declare 
+        v_appCode text;
+    begin
+        select current_setting('custom_variable.test_session', 't') into v_appCode;
+        return v_appCode;
+    END;
+$function$
+;
+
+SET SESSION custom_variable.test_session = 'test';
+
+SELECT usp_fetch_current_setting();
+    usp_fetch_current_setting 
+    ---------------------------
+     test
+    (1 row)
+
+RESET custom_variable.test_session;
+
+SELECT usp_fetch_current_setting();
+     usp_fetch_current_setting 
+    ---------------------------
+     
+    (1 row)
+
+### List and delete functions and related triggers
+docker exec -it postgres  psql -U postgres -d crypto -c "\df"
+                                  List of functions
+ Schema |            Name            | Result data type | Argument data types | Type 
+--------+----------------------------+------------------+---------------------+------
+ public | notify_certificate_changes | trigger          |                     | func
+(1 row)
+
+
+docker exec -it postgres  psql -U postgres -d crypto -c "\dS certificates"
+                                     Table "public.certificates"
+     Column      |          Type           | Collation | Nullable |             Default              
+-----------------+-------------------------+-----------+----------+----------------------------------
+ id              | integer                 |           | not null | nextval('odd1_id_seq'::regclass)
+ owner           | character varying(100)  |           | not null | 
+ common_name     | character varying(100)  |           | not null | 
+ serial_number   | character varying(100)  |           | not null | 
+ fingerprint     | character varying(100)  |           | not null | 
+ cert_b64        | character varying(5000) |           | not null | 
+ expiration_date | character varying(100)  |           | not null | 
+Indexes:
+    "certificates_pkey" PRIMARY KEY, btree (id)
+    "owner_common_name_unique" UNIQUE CONSTRAINT, btree (owner, common_name)
+Triggers:
+    certificate_notify_trigger AFTER INSERT OR DELETE OR UPDATE ON certificates FOR EACH ROW EXECUTE FUNCTION notify_certificate_changes()
+
+
+
+docker exec -it postgres psql -U postgres -d crypto -c "DROP TRIGGER IF EXISTS certificate_notify_trigger ON certificates;"
+DROP TRIGGER
+
+docker exec -it postgres psql -U postgres -d crypto -c "DROP FUNCTION IF EXISTS notify_certificate_changes();"
+DROP FUNCTION
+
+### List and delete sequences
+docker exec -it postgres  psql -U postgres -d crypto -c "\ds"
+                        List of relations
+ Schema |               Name                |   Type   |  Owner   
+--------+-----------------------------------+----------+----------
+ public | certificates_id_seq               | sequence | postgres
+ public | odd1_id_seq                       | sequence | postgres
+(11 rows)
+
+docker exec -it postgres psql -U postgres -d crypto -c "DROP SEQUENCE IF EXISTS odd1_id_seq CASCADE;"
+NOTICE:  drop cascades to default value for column id of table certificates
+DROP SEQUENCE
+
+### Run init.sql
+docker exec -i postgres psql -U postgres -d crypto -a -f /docker-entrypoint-initdb.d/init.sql
+
+# error is create  sequence 
+    CREATE SEQUENCE IF NOT EXISTS three_step_id_seq START 3 INCREMENT 3;    
+    CREATE SEQUENCE
+    ALTER TABLE certificates
+    ALTER COLUMN id SET DEFAULT nextval('three_step_id_seq');
+    psql:/docker-entrypoint-initdb.d/init.sql:37: ERROR:  column "id" of relation "certificates" is an identity column
+# fix
+
+ALTER TABLE certificates
+ALTER COLUMN id DROP IDENTITY;
+CREATE SEQUENCE IF NOT EXISTS three_step_id_seq START 3 INCREMENT 3;    
+ALTER TABLE certificates
+ALTER COLUMN id SET DEFAULT nextval('three_step_id_seq');

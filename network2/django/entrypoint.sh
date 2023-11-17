@@ -18,8 +18,8 @@ yes | python manage.py makemigrations api > /dev/stderr
 yes yes | python manage.py migrate > /dev/stderr
 
 
-python scripts/producer.py &
-python scripts/consumer.py &
+# python scripts/producer.py &
+# python scripts/consumer.py &
 
 if [ "$ENV" = "PROD" ]
 then

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import json
-import math
+import sys
 from threading import Thread
 import time
 import requests
@@ -10,7 +10,7 @@ import requests.adapters
 
 
 # API endpoint URL
-url = "http://192.168.144.4:5000/certificates/"
+url = "http://192.168.112.3:5000/certificates/"
 
 data = {
     "owner":"xxx",
@@ -31,7 +31,7 @@ headers['Content-Type'] = 'application/json'
 payload = json.dumps(data)
 responses_status = []
 responses_results = []
-thread_number = 1000
+thread_number = int(sys.argv[1]) if len(sys.argv) > 1 else 100
 
 current_datetime = datetime.now()
 current_datetime = current_datetime + timedelta(hours=1)
@@ -44,7 +44,7 @@ adapter = requests.adapters.HTTPAdapter(pool_connections=3000, pool_maxsize=1000
 
 elapsed_list= []
 def task(i, payload, elapsed_list):
-    payload = payload.replace("xxx", f"name_{i}")
+    payload = payload.replace("xxx", f"name_{i + thread_number + 1}")
     start_time = time.time()
     response = requests.post(url, data=payload, verify=False, headers=headers)
     elapsed = round(time.time() - start_time, 3) 

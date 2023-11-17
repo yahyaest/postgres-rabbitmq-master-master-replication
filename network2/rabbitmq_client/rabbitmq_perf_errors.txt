@@ -1,0 +1,2 @@
+(320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+(320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")

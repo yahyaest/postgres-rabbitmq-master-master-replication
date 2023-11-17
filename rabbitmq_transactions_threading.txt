@@ -99,3 +99,227 @@ We have 2 nodes with 1 active consumers. There is 4458 DELETE messages delivered
  
 We have 2 nodes with 1 active consumers. There is 953 INSERT messages delivered around 2023-11-09 17:15:37 in the queue with average 0.01554 s and longest with duration of 14.807 s 
  
+We have 2 nodes with 1 active consumers. There is 482 INSERT messages delivered around 2023-11-12 22:28:33 in the queue with average 0.00346 s and longest with duration of 1.666 s 
+ 
+We have 2 nodes with 1 active consumers. There is 482 INSERT messages delivered around 2023-11-12 22:50:57 in the queue with average 0.00205 s and longest with duration of 0.986 s 
+ 
+We have 2 nodes with 1 active consumers. There is 970 DELETE messages delivered around 2023-11-12 22:55:15 in the queue with average 0.01875 s and longest with duration of 18.189 s 
+ 
+We have 2 nodes with 2 active consumers. There is 485 DELETE messages delivered around 2023-11-13 00:26:28 in the queue with average 0.00031 s and longest with duration of 0.151 s 
+ 
+We have 2 nodes with 1 active consumers. There is 959 DELETE messages delivered around 2023-11-13 00:44:44 in the queue with average 0.006 s and longest with duration of 5.753 s 
+ 
+We have 2 nodes with 1 active consumers. There is 963 INSERT messages delivered around 2023-11-13 00:45:38 in the queue with average 0.00388 s and longest with duration of 3.737 s 
+ 
+We have 2 nodes with 1 active consumers. There is 963 DELETE messages delivered around 2023-11-13 00:46:36 in the queue with average 0.00602 s and longest with duration of 5.795 s 
+ 
+We have 2 nodes with 1 active consumers. There is 1000 INSERT messages delivered around 2023-11-13 00:48:34 in the queue with average 0.00539 s and longest with duration of 5.39 s 
+ 
+We have 2 nodes with 1 active consumers. There is 1000 DELETE messages delivered around 2023-11-13 00:51:22 in the queue with average 0.0072 s and longest with duration of 7.2 s 
+ 
+We have 2 nodes with 1 active consumers. There is 955 INSERT messages delivered around 2023-11-13 00:53:09 in the queue with average 0.00377 s and longest with duration of 3.6 s 
+ 
+We have 2 nodes with 1 active consumers. There is 955 DELETE messages delivered around 2023-11-13 00:55:39 in the queue with average 0.00551 s and longest with duration of 5.262 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7639 INSERT messages delivered around 2023-11-13 01:00:43 in the queue with average 0.00541 s and longest with duration of 41.347 s 
+ 
+We have 2 nodes with 1 active consumers. There is 6419 DELETE messages delivered around 2023-11-13 01:05:00 in the queue with average 0.00449 s and longest with duration of 28.817 s 
+ 
+We have 2 nodes with 1 active consumers. There is 2187 DELETE messages delivered around 2023-11-13 01:09:35 in the queue with average 0.01492 s and longest with duration of 32.63 s 
+ 
+We have 2 nodes with 1 active consumers. There is 967 DELETE messages delivered around 2023-11-13 01:11:36 in the queue with average 0.00932 s and longest with duration of 9.01 s 
+ 
+We have 2 nodes with 1 active consumers. There is 876 INSERT messages delivered around 2023-11-13 01:12:10 in the queue with average 0.00524 s and longest with duration of 4.594 s 
+ 
+We have 2 nodes with 1 active consumers. There is 85 INSERT messages delivered around 2023-11-13 01:12:14 in the queue with average 0.06062 s and longest with duration of 5.153 s 
+ 
+We have 2 nodes with 1 active consumers. There is 961 DELETE messages delivered around 2023-11-13 01:13:44 in the queue with average 0.008 s and longest with duration of 7.686 s 
+ 
+We have 2 nodes with 1 active consumers. There is 964 DELETE messages delivered around 2023-11-14 15:41:45 in the queue with average 0.00967 s and longest with duration of 9.32 s 
+ 
+We have 2 nodes with 1 active consumers. There is 966 INSERT messages delivered around 2023-11-14 16:03:50 in the queue with average 0.00533 s and longest with duration of 5.145 s 
+ 
+We have 2 nodes with 1 active consumers. There is 966 DELETE messages delivered around 2023-11-14 16:06:08 in the queue with average 0.00699 s and longest with duration of 6.749 s 
+ 
+We have 2 nodes with 1 active consumers. There is 963 INSERT messages delivered around 2023-11-14 16:09:41 in the queue with average 0.00549 s and longest with duration of 5.289 s 
+ 
+We have 2 nodes with 1 active consumers. There is 963 DELETE messages delivered around 2023-11-14 16:10:58 in the queue with average 0.00731 s and longest with duration of 7.039 s 
+ 
+We have 2 nodes with 1 active consumers. There is 962 INSERT messages delivered around 2023-11-14 16:15:55 in the queue with average 0.00584 s and longest with duration of 5.618 s 
+ 
+We have 2 nodes with 1 active consumers. There is 962 DELETE messages delivered around 2023-11-14 16:17:01 in the queue with average 0.01044 s and longest with duration of 10.047 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7282 INSERT messages delivered around 2023-11-14 16:34:52 in the queue with average 0.00598 s and longest with duration of 43.568 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7282 DELETE messages delivered around 2023-11-14 16:39:32 in the queue with average 0.00817 s and longest with duration of 59.459 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7192 INSERT messages delivered around 2023-11-14 16:44:24 in the queue with average 0.00571 s and longest with duration of 41.047 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7192 DELETE messages delivered around 2023-11-14 16:49:41 in the queue with average 0.00736 s and longest with duration of 52.924 s 
+ 
+We have 2 nodes with 1 active consumers. There is 13658 INSERT messages delivered around 2023-11-14 16:58:41 in the queue with average 0.00398 s and longest with duration of 54.316 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7646 INSERT messages delivered around 2023-11-14 20:40:34 in the queue with average 0.00674 s and longest with duration of 51.531 s 
+ 
+We have 2 nodes with 1 active consumers. There is 7646 DELETE messages delivered around 2023-11-14 20:44:01 in the queue with average 0.01064 s and longest with duration of 81.345 s 
+ 
+We have 2 nodes with 1 active consumers. There is 3935 INSERT messages delivered around 2023-11-14 20:49:54 in the queue with average 0.00499 s and longest with duration of 19.616 s 
+ 
+We have 2 nodes with 1 active consumers. There is 3935 DELETE messages delivered around 2023-11-14 20:53:43 in the queue with average 0.00901 s and longest with duration of 35.467 s 
+ 
+We have 2 nodes with 1 active consumers. There is 4161 INSERT messages delivered around 2023-11-14 20:58:43 in the queue with average 0.00459 s and longest with duration of 19.084 s 
+ 
+We have 2 nodes with 1 active consumers. There is 4161 DELETE messages delivered around 2023-11-14 21:03:47 in the queue with average 0.00766 s and longest with duration of 31.862 s 
+ 
+We have 2 nodes with 1 active consumers. There is 4160 INSERT messages delivered around 2023-11-14 21:08:59 in the queue with average 0.00574 s and longest with duration of 23.891 s 
+ 
+We have 2 nodes with 1 active consumers. There is 4160 DELETE messages delivered around 2023-11-14 21:10:43 in the queue with average 0.00831 s and longest with duration of 34.58 s 
+ 
+We have 3 nodes with 3 active consumers. There is 217 INSERT messages delivered around 2023-11-15 01:51:31 in the queue with average 0.00064 s and longest with duration of 0.139 s 
+ 
+We have 3 nodes with 2 active consumers. There is 4 DELETE messages delivered around 2023-11-15 01:53:13 in the queue with average 0.01575 s and longest with duration of 0.063 s 
+ 
+We have 3 nodes with 2 active consumers. There is 208 DELETE messages delivered around 2023-11-15 01:53:53 in the queue with average 0.00113 s and longest with duration of 0.235 s 
+ 
+We have 3 nodes with 2 active consumers. There is 194 INSERT messages delivered around 2023-11-15 01:55:39 in the queue with average 0.00079 s and longest with duration of 0.154 s 
+ 
+We have 3 nodes with 2 active consumers. There is 6 INSERT messages delivered around 2023-11-15 09:09:09 in the queue with average 0.01233 s and longest with duration of 0.074 s 
+ 
+We have 3 nodes with 2 active consumers. There is 200 DELETE messages delivered around 2023-11-15 09:09:42 in the queue with average 0.00079 s and longest with duration of 0.158 s 
+ 
+We have 3 nodes with 2 active consumers. There is 192 INSERT messages delivered around 2023-11-15 09:11:33 in the queue with average 0.00074 s and longest with duration of 0.143 s 
+ 
+We have 3 nodes with 3 active consumers. There is 2094 INSERT messages delivered around 2023-11-15 09:19:14 in the queue with average 0.00025 s and longest with duration of 0.531 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1902 DELETE messages delivered around 2023-11-15 09:22:15 in the queue with average 0.00018 s and longest with duration of 0.345 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1908 INSERT messages delivered around 2023-11-15 09:23:48 in the queue with average 0.00015 s and longest with duration of 0.287 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1908 DELETE messages delivered around 2023-11-15 09:26:53 in the queue with average 0.00026 s and longest with duration of 0.497 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1924 INSERT messages delivered around 2023-11-15 09:33:56 in the queue with average 0.0001 s and longest with duration of 0.191 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1924 DELETE messages delivered around 2023-11-15 10:23:28 in the queue with average 0.00019 s and longest with duration of 0.364 s 
+ 
+We have 3 nodes with 2 active consumers. There is 5 DELETE messages delivered around 2023-11-15 10:36:42 in the queue with average 0.005 s and longest with duration of 0.025 s 
+ 
+We have 3 nodes with 2 active consumers. There is 2 DELETE messages delivered around 2023-11-15 10:37:40 in the queue with average 0.0115 s and longest with duration of 0.023 s 
+ 
+We have 3 nodes with 2 active consumers. There is 20 INSERT messages delivered around 2023-11-15 10:48:39 in the queue with average 0.00195 s and longest with duration of 0.039 s 
+ 
+We have 3 nodes with 2 active consumers. There is 20 DELETE messages delivered around 2023-11-15 11:01:52 in the queue with average 0.0017 s and longest with duration of 0.034 s 
+ 
+We have 3 nodes with 1 active consumers. There is 20 INSERT messages delivered around 2023-11-15 11:03:16 in the queue with average 0.0044 s and longest with duration of 0.088 s 
+ 
+We have 3 nodes with 1 active consumers. There is 1928 INSERT messages delivered around 2023-11-15 11:12:20 in the queue with average 0.00433 s and longest with duration of 8.345 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1904 INSERT messages delivered around 2023-11-15 11:21:31 in the queue with average 8e-05 s and longest with duration of 0.151 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1916 INSERT messages delivered around 2023-11-15 11:48:59 in the queue with average 0.01666 s and longest with duration of 31.92927312850952 s 
+ 
+We have 3 nodes with 2 active consumers. There is 3832 INSERT messages delivered around 2023-11-15 11:52:22 in the queue with average 0.09262 s and longest with duration of 354.9209520816803 s 
+ 
+We have 3 nodes with 2 active consumers. There is 3832 INSERT messages delivered around 2023-11-15 11:54:03 in the queue with average 0.09262 s and longest with duration of 354.9209520816803 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1922 INSERT messages delivered around 2023-11-15 11:55:26 in the queue with average 0.01812 s and longest with duration of 34.82053279876709 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1922 DELETE messages delivered around 2023-11-15 11:57:11 in the queue with average 0.01159 s and longest with duration of 22.27190136909485 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1904 INSERT messages delivered around 2023-11-15 11:59:37 in the queue with average 0.01537 s and longest with duration of 29.263561010360718 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1904 DELETE messages delivered around 2023-11-15 12:01:16 in the queue with average 0.01014 s and longest with duration of 19.30492401123047 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1914 INSERT messages delivered around 2023-11-15 12:03:08 in the queue with average 0.02147 s and longest with duration of 41.08622932434082 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1914 DELETE messages delivered around 2023-11-15 12:04:52 in the queue with average 0.01275 s and longest with duration of 24.395056009292603 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8118 INSERT messages delivered around 2023-11-15 12:08:49 in the queue with average 0.01895 s and longest with duration of 153.84644317626953 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8118 DELETE messages delivered around 2023-11-15 12:12:56 in the queue with average 0.02179 s and longest with duration of 176.8949453830719 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8102 INSERT messages delivered around 2023-11-15 12:16:20 in the queue with average 0.01771 s and longest with duration of 143.52514505386353 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8102 DELETE messages delivered around 2023-11-15 12:19:08 in the queue with average 0.01472 s and longest with duration of 119.24795246124268 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8338 INSERT messages delivered around 2023-11-15 12:24:04 in the queue with average 0.01983 s and longest with duration of 165.3082664012909 s 
+ 
+We have 3 nodes with 2 active consumers. There is 8338 DELETE messages delivered around 2023-11-15 12:26:43 in the queue with average 0.01071 s and longest with duration of 89.31138730049133 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15036 INSERT messages delivered around 2023-11-15 12:33:16 in the queue with average 0.01922 s and longest with duration of 289.00478744506836 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15036 DELETE messages delivered around 2023-11-15 12:39:10 in the queue with average 0.01064 s and longest with duration of 160.03027367591858 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15614 INSERT messages delivered around 2023-11-15 12:45:13 in the queue with average 0.0171 s and longest with duration of 267.0210814476013 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15614 DELETE messages delivered around 2023-11-15 12:49:36 in the queue with average 0.01115 s and longest with duration of 174.06001782417297 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15092 INSERT messages delivered around 2023-11-15 12:55:55 in the queue with average 0.01666 s and longest with duration of 251.3824417591095 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15092 DELETE messages delivered around 2023-11-15 13:00:01 in the queue with average 0.01045 s and longest with duration of 157.67081761360168 s 
+ 
+We have 3 nodes with 1 active consumers. There is 949 INSERT messages delivered around 2023-11-15 13:03:57 in the queue with average 0.03067 s and longest with duration of 29.10879349708557 s 
+ 
+We have 3 nodes with 1 active consumers. There is 949 DELETE messages delivered around 2023-11-15 13:05:58 in the queue with average 0.01704 s and longest with duration of 16.174482822418213 s 
+ 
+We have 3 nodes with 1 active consumers. There is 961 INSERT messages delivered around 2023-11-15 13:08:44 in the queue with average 0.02211 s and longest with duration of 21.243520259857178 s 
+ 
+We have 3 nodes with 1 active consumers. There is 961 DELETE messages delivered around 2023-11-15 13:10:12 in the queue with average 0.01526 s and longest with duration of 14.664228677749634 s 
+ 
+We have 3 nodes with 1 active consumers. There is 951 INSERT messages delivered around 2023-11-15 13:11:48 in the queue with average 0.02351 s and longest with duration of 22.360073566436768 s 
+ 
+We have 3 nodes with 1 active consumers. There is 951 DELETE messages delivered around 2023-11-15 13:13:17 in the queue with average 0.01499 s and longest with duration of 14.258050203323364 s 
+ 
+We have 3 nodes with 1 active consumers. There is 3987 INSERT messages delivered around 2023-11-15 13:16:57 in the queue with average 0.02337 s and longest with duration of 93.19250226020813 s 
+ 
+We have 3 nodes with 1 active consumers. There is 3987 DELETE messages delivered around 2023-11-15 13:21:33 in the queue with average 0.01716 s and longest with duration of 68.41836738586426 s 
+ 
+We have 3 nodes with 1 active consumers. There is 3846 INSERT messages delivered around 2023-11-15 13:24:45 in the queue with average 0.02522 s and longest with duration of 96.98900699615479 s 
+ 
+We have 3 nodes with 1 active consumers. There is 3846 DELETE messages delivered around 2023-11-15 13:27:40 in the queue with average 0.01575 s and longest with duration of 60.55724096298218 s 
+ 
+We have 3 nodes with 1 active consumers. There is 4253 INSERT messages delivered around 2023-11-15 13:31:28 in the queue with average 0.02266 s and longest with duration of 96.39162731170654 s 
+ 
+We have 3 nodes with 1 active consumers. There is 4253 DELETE messages delivered around 2023-11-15 13:34:14 in the queue with average 0.01377 s and longest with duration of 58.560595989227295 s 
+ 
+We have 3 nodes with 1 active consumers. There is 7578 INSERT messages delivered around 2023-11-15 13:38:41 in the queue with average 0.02513 s and longest with duration of 190.4645175933838 s 
+ 
+We have 3 nodes with 1 active consumers. There is 7578 DELETE messages delivered around 2023-11-15 13:45:39 in the queue with average 0.01334 s and longest with duration of 101.05431628227234 s 
+ 
+We have 3 nodes with 1 active consumers. There is 7091 INSERT messages delivered around 2023-11-15 13:54:15 in the queue with average 0.02471 s and longest with duration of 175.2188365459442 s 
+ 
+We have 3 nodes with 1 active consumers. There is 7091 DELETE messages delivered around 2023-11-15 13:58:02 in the queue with average 0.01385 s and longest with duration of 98.192054271698 s 
+ 
+We have 3 nodes with 1 active consumers. There is 6991 INSERT messages delivered around 2023-11-15 14:04:35 in the queue with average 0.02469 s and longest with duration of 172.6306436061859 s 
+ 
+We have 3 nodes with 1 active consumers. There is 6991 DELETE messages delivered around 2023-11-15 14:11:20 in the queue with average 0.0132 s and longest with duration of 92.31458234786987 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1932 INSERT messages delivered around 2023-11-15 14:41:18 in the queue with average 0.0205 s and longest with duration of 39.6078987121582 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1932 DELETE messages delivered around 2023-11-15 14:43:13 in the queue with average 0.01007 s and longest with duration of 19.456985473632812 s 
+ 
+We have 3 nodes with 3 active consumers. There is 3926 INSERT messages delivered around 2023-11-15 14:47:32 in the queue with average 0.01406 s and longest with duration of 55.19277906417847 s 
+ 
+We have 3 nodes with 3 active consumers. There is 3926 INSERT messages delivered around 2023-11-15 14:48:58 in the queue with average 0.01406 s and longest with duration of 55.19277906417847 s 
+ 
+We have 3 nodes with 2 active consumers. There is 3926 DELETE messages delivered around 2023-11-15 14:50:11 in the queue with average 0.01364 s and longest with duration of 53.53204035758972 s 
+ 
+We have 3 nodes with 3 active consumers. There is 5736 INSERT messages delivered around 2023-11-15 15:00:03 in the queue with average 0.01285 s and longest with duration of 73.72732901573181 s 
+ 
+We have 3 nodes with 2 active consumers. There is 9552 DELETE messages delivered around 2023-11-16 01:09:43 in the queue with average 3.82134 s and longest with duration of 36501.4575009346 s 
+ 
+We have 3 nodes with 3 active consumers. There is 15010 INSERT messages delivered around 2023-11-16 01:17:17 in the queue with average 0.01791 s and longest with duration of 268.8067305088043 s 
+ 
+We have 3 nodes with 2 active consumers. There is 15010 DELETE messages delivered around 2023-11-16 01:21:56 in the queue with average 0.01265 s and longest with duration of 189.82248830795288 s 
+ 
+We have 3 nodes with 3 active consumers. There is 22604 INSERT messages delivered around 2023-11-16 01:30:18 in the queue with average 0.01618 s and longest with duration of 365.685750246048 s 
+ 
+We have 3 nodes with 2 active consumers. There is 22604 DELETE messages delivered around 2023-11-16 01:37:55 in the queue with average 0.01611 s and longest with duration of 364.0489614009857 s 
+ 
+We have 3 nodes with 3 active consumers. There is 29844 INSERT messages delivered around 2023-11-16 01:48:30 in the queue with average 0.01888 s and longest with duration of 563.446478843689 s 
+ 
+We have 3 nodes with 2 active consumers. There is 29844 DELETE messages delivered around 2023-11-16 01:58:27 in the queue with average 0.01673 s and longest with duration of 499.3362579345703 s 
+ 
+We have 3 nodes with 3 active consumers. There is 42168 INSERT messages delivered around 2023-11-16 02:12:22 in the queue with average 0.01837 s and longest with duration of 774.655519247055 s 
+ 
+We have 3 nodes with 2 active consumers. There is 42168 DELETE messages delivered around 2023-11-16 02:23:30 in the queue with average 0.01349 s and longest with duration of 568.6361765861511 s 
+ 
