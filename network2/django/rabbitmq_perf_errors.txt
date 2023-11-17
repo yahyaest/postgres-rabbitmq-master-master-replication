@@ -14,3 +14,42 @@ connection to server at "172.17.0.9", port 5432 failed: Operation timed out
 	Is the server running on that host and accepting TCP/IP connections?
 
 (320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+'hostname'
+'hostname'
+(320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+'source_id'
+'source_id'
+connection to server at "172.40.0.3", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+connection to server at "172.40.0.3", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+can't execute an empty query
+syntax error at or near "'2'"
+LINE 2:     SET '2','env2','env2','12','12','env2','2024'
+                ^
+
+syntax error at or near "'2'"
+LINE 2:     SET '2','env2','env2','1','1','env2','2024
+                ^
+
+syntax error at or near "'2'"
+LINE 2:     SET '2','env2','env2','12','12','env2','2024'
+                ^
+
+syntax error at or near "'env2'"
+LINE 2:     SET 'env2','env2','100','100','env2','2024',
+                ^
+
+syntax error at or near "'env2'"
+LINE 2:     SET 'env2','env2','1000','1000','env2','2024'
+                ^
+

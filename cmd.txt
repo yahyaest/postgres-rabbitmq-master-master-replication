@@ -69,3 +69,4 @@ root@02e73560ec99:/# psql -U postgres -d crypto < var/lib/postgresql/data/certs.
 https://hackernoon.com/replicate-postgresql-databases-using-async-python-and-rabbitmq-for-high-availability
 https://www.rabbitmq.com/tutorials/tutorial-one-python.html
 https://docs.docker.com/network/network-tutorial-standalone/
+https://www.rabbitmq.com/tutorials/tutorial-four-python.html  #

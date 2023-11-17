@@ -1,0 +1,119 @@
+version: "3.2"
+services:
+
+  front3:
+    container_name: front3
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    stdin_open: true
+    ports:
+      - 3002:3000
+    depends_on:
+      - postgres3
+    volumes:
+      - ./front:/app
+    env_file:
+      - front/.env
+    entrypoint: /app/entrypoint.sh
+    networks:
+      - rabbitmq_network3
+  
+  django3:
+    container_name: 'django3'
+    build:
+      context: ./django
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=psql://postgres:postgres@postgres3:5432/crypto
+      - DATABASE_HOST=172.40.0.22
+      - DATABASE_HOST_LIST=172.40.0.20,172.40.0.21,172.40.0.22
+      - RABBITMQ_HOST=172.40.0.32
+      - RABBITMQ_HOST_LIST=172.40.0.30,172.40.0.31,,172.40.0.32
+      - SOURCE_ID=postgres_env3
+    command: sh -c "./entrypoint.sh"
+    ports:
+        - 5002:5000
+    volumes:
+        - ./django:/code
+    networks:
+        - rabbitmq_network3
+
+  rabbitmq_node30:
+    hostname: rabbitmq_node30
+    image: rabbitmq:management
+    container_name: rabbitmq_node30
+    ports:
+        - 5674:5672
+        - 15674:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        - ./rabbitmq:/host
+    # entrypoint: /host/entrypoint.sh
+    environment:
+        - RABBITMQ_ERLANG_COOKIE=rabbitcookie
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
+    extra_hosts:
+      - "rabbitmq_node10:172.40.0.30"
+      - "rabbitmq_node20:172.40.0.31"
+    networks:
+        - rabbitmq_network3
+  
+  rabbitmq-client3:
+    container_name: 'rabbitmq-client3'
+    build:
+      context: ./rabbitmq_client
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=172.40.0.22
+      - RABBITMQ_HOST=172.40.0.32
+      - RABBITMQ_HOST_LIST=172.40.0.30,172.40.0.31,172.40.0.32
+      - RABBITMQ_QUEUE=crypto3
+      - RABBITMQ_ROUTING_KEY=key_crypto3
+      - RABBITMQ_ROUTING_KEY_LIST=key_crypto1,key_crypto2
+      - SOURCE_ID=postgres_env3
+    command: sh -c "./entrypoint.sh"
+    volumes:
+        - ./rabbitmq_client:/code
+    networks:
+        - rabbitmq_network3
+
+  # adminer3:
+  #   image: adminer3
+  #   container_name: 'adminer'
+  #   ports:
+  #       - 8091:8080
+  #   restart: unless-stopped
+  #   networks:
+  #       - rabbitmq_network3
+
+
+  postgres3:
+    image: postgres:14.8
+    container_name: 'postgres3'
+    restart: unless-stopped
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=crypto
+        - POSTGRES_HOST_AUTH_METHOD=md5
+    command: postgres -c max_connections=20000 -c shared_buffers=1GB -c password_encryption=scram-sha-256
+    volumes:
+        - postgresql:/var/lib/postgresql/data
+        - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5435:5432
+    networks:
+        - rabbitmq_network3
+
+volumes:
+    postgresql:
+
+networks:
+  rabbitmq_network3:
+    driver: bridge

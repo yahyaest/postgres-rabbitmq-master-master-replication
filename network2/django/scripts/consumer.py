@@ -28,7 +28,7 @@ logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
 DATABASE_HOST = os.environ.get('DATABASE_HOST', None)
-DATABASE_HOST_LIST = os.environ.get('DATABASE_HOST_LIST', None)
+SOURCE_ID = os.environ.get('SOURCE_ID', None)
 
 credentials = pika.PlainCredentials(username='admin', password='admin')
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq_node20', port=5672, credentials=credentials))
@@ -63,6 +63,27 @@ def handle_insert(op):
     """
     return sql
 
+def handle_update(op):
+    table, data = op['table'], op['new_record']
+
+    sql_key = ''
+    sql_value = ''
+
+    for key, value in data.items():
+        if key != 'id':
+            sql_key = sql_key + f"'{key}',"
+            sql_value = sql_value + f"{key} = '{value}', "
+    
+    sql_key = sql_key[:-2]
+    sql_value = sql_value[:-2] 
+
+    sql = f"""UPDATE {table} 
+    SET {sql_value}
+    WHERE id={data['id']};
+    ;
+    """
+    return sql
+
 def handle_delete(op):
     table, data = op['table'], op['old_record']
 
@@ -75,84 +96,53 @@ def operation_handler(op):
     sql = None
     if op['operation'] == 'INSERT':
         sql = handle_insert(op)
+    if op['operation'] == 'UPDATE':
+        sql = handle_update(op)
     if op['operation'] == 'DELETE':
         sql = handle_delete(op)
     # we can add other operation handlers here
     return sql
 
 def callback(channel, method, properties, body):
-    databases_hosts = DATABASE_HOST_LIST.split(',')
     op = json.loads(body.decode('utf-8'))
     logger.info(f"json operation payload is : {op} \n \n")
-    logger.info(f"Current database host is {DATABASE_HOST} and  database cluster list is {databases_hosts} \n \n")
-    for db in databases_hosts :
-        try:
-            if op['hostname'] == db:
-                logger.warning(f"Skip applying operation {op['operation']} from host {op['hostname']} to database with host {db}. Reason : source and target host are equal \n")
-                continue
-        
-            else :
-                logger.info(f"Apply operation {op['operation']} from host {op['hostname']} to database with host {db} \n")
-                sql = operation_handler(op)
-                logger.info(f"sql is : {sql} \n")
-                ### Postgres 
-                connection = psycopg2.connect(
-                dbname="crypto",
-                user="postgres",
-                password="postgres",
-                host=f"{db}",
-                port="5432"
-                )
-                connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-                cursor = connection.cursor()
-                #block if payload.new/old_record.id exist
-                if op['operation'] == "INSERT" :
-                    cursor.execute(f"SELECT EXISTS (SELECT 1 FROM {op['table']} WHERE id = {op['new_record']['id']});;")
-                    cursor_result = cursor.fetchone()[0]
-                    logger.info(f"cursor_result is {cursor_result} \n")
-                    if cursor_result:
-                        logger.warning(f"row in table {op['table']} with id {op['new_record']['id']} already exist. Skipping... \n")
-                    else:
-                        cursor.execute(sql)
-                        end_time = time.time()
-                        start_time = op['start_time']
-                        elapsed = round(end_time - start_time, 3)
-                        logger.info(f"elapsed time is {elapsed} s \n")
-                        if os.path.exists("/code/rabbitmq_perf.txt"):
-                            if os.stat("/code/rabbitmq_perf.txt").st_size == 0:
-                                with open("/code/rabbitmq_perf.txt","a") as f:
-                                    f.write(op['operation'])
-                                    f.write("\n")
-                        with open("/code/rabbitmq_perf.txt","a") as f:
-                            f.write(str(elapsed))
-                            f.write("\n")
-                else:
-                    # DELETE Case
-                    cursor.execute(f"SELECT EXISTS (SELECT 1 FROM {op['table']} WHERE id = {op['old_record']['id']});;")
-                    cursor_result = cursor.fetchone()[0]
-                    logger.info(f"cursor_result is {cursor_result} \n")
-                    if not cursor_result:
-                        logger.warning(f"row in table {op['table']} with id {op['old_record']['id']} already deleted. Skipping... \n")
-                    else:
-                        cursor.execute(sql)
-                        end_time = time.time()
-                        start_time = op['start_time']
-                        elapsed = round(end_time - start_time, 3)
-                        logger.info(f"elapsed time is {elapsed} s \n")
-                        if os.path.exists("/code/rabbitmq_perf.txt"):
-                            if os.stat("/code/rabbitmq_perf.txt").st_size == 0:
-                                with open("/code/rabbitmq_perf.txt","a") as f:
-                                    f.write(op['operation'])
-                                    f.write("\n")
-                        with open("/code/rabbitmq_perf.txt","a") as f:
-                            f.write(str(elapsed))
-                            f.write("\n")
-        except Exception as e:
-            with open("/code/rabbitmq_perf_errors.txt","a") as f:
-                f.write(str(e))
+    try:
+        if op['source_id'] == SOURCE_ID:
+            logger.warning(f"Skip applying operation {op['operation']} from source_id {op['source_id']} to source_id {SOURCE_ID}. Reason : source and target are equal \n")
+        else :
+            logger.info(f"Apply operation {op['operation']} from source_id {op['source_id']} to source_id  {SOURCE_ID} \n")
+            sql = operation_handler(op)
+            logger.info(f"sql is : {sql} \n")
+            ### Postgres 
+            connection = psycopg2.connect(
+            dbname="crypto",
+            user="postgres",
+            password="postgres",
+            host=f"{DATABASE_HOST}",
+            port="5432"
+            )
+            connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+            cursor = connection.cursor()
+            cursor.execute("""SET SESSION custom_variable.source_session = 'rabbitmq';""")
+            cursor.execute(sql)
+            end_time = time.time()
+            start_time = op['start_time']
+            elapsed = round(end_time - start_time, 3)
+            logger.info(f"elapsed time is {elapsed} s \n")
+            if os.path.exists("/code/rabbitmq_perf.txt"):
+                if os.stat("/code/rabbitmq_perf.txt").st_size == 0:
+                    with open("/code/rabbitmq_perf.txt","a") as f:
+                        f.write(op['operation'])
+                        f.write("\n")
+            with open("/code/rabbitmq_perf.txt","a") as f:
+                f.write(str(elapsed))
                 f.write("\n")
-            logger.error(f"Exception : {e} \n")
 
+    except Exception as e:
+        with open("/code/rabbitmq_perf_errors.txt","a") as f:
+            f.write(str(e))
+            f.write("\n")
+        logger.error(f"Exception : {e} \n")
 
 try:
     channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)

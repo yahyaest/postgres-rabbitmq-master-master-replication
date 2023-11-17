@@ -19,3 +19,18 @@ connection to server at "172.17.0.9", port 5432 failed: Operation timed out
 
 Stream connection lost: ConnectionResetError(104, 'Connection reset by peer')
 Stream connection lost: ConnectionResetError(104, 'Connection reset by peer')
+connection to server at "172.17.0.9", port 5432 failed: Operation timed out
+	Is the server running on that host and accepting TCP/IP connections?
+
+Stream connection lost: ConnectionResetError(104, 'Connection reset by peer')
+control reached end of trigger procedure without RETURN
+CONTEXT:  PL/pgSQL function notify_certificate_changes()
+
+'hostname'
+'hostname'
+'hostname'
+duplicate key value violates unique constraint "certificates_pkey"
+DETAIL:  Key (id)=(202265) already exists.
+
+(320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+can't execute an empty query

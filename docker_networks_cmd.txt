@@ -1,0 +1,15 @@
+# Create network and connect your services
+docker network inspect -f '{{range .IPAM.Config}}{{.Subnet}}{{end}}' $(docker network ls -q) # Show all network subnet
+docker network create --subnet=172.40.0.0/16 pocha
+docker network connect pocha rabbitmq_node10 --ip "172.40.0.30"
+docker inspect rabbitmq_node10 | grep IPAdd
+docker network connect pocha rabbitmq_node20 --ip "172.40.0.31"
+docker network inspect pocha | grep IPv4Address | wc -l
+docker network connect pocha rabbitmq_node30 --ip "172.40.0.32"
+
+
+docker network connect pocha postgres --ip "172.40.0.20"
+docker network connect pocha postgres2 --ip "172.40.0.21"
+docker network connect pocha postgres3 --ip "172.40.0.22"
+
+
