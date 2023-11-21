@@ -323,3 +323,7 @@ We have 3 nodes with 3 active consumers. There is 42168 INSERT messages delivere
  
 We have 3 nodes with 2 active consumers. There is 42168 DELETE messages delivered around 2023-11-16 02:23:30 in the queue with average 0.01349 s and longest with duration of 568.6361765861511 s 
  
+We have 3 nodes with 2 active consumers. There is 1902 INSERT messages delivered around 2023-11-21 15:23:15 in the queue with average 0.02609 s and longest with duration of 49.62202262878418 s 
+ 
+We have 3 nodes with 2 active consumers. There is 1902 DELETE messages delivered around 2023-11-21 15:25:48 in the queue with average 0.0263 s and longest with duration of 50.02198934555054 s 
+ 

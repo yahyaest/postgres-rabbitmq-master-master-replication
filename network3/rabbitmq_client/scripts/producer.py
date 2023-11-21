@@ -31,7 +31,6 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
-DATABASE_HOST = os.environ.get('DATABASE_HOST', None)
 RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', None)
 RABBITMQ_HOST_LIST = os.environ.get('RABBITMQ_HOST_LIST', None)
 RABBITMQ_ROUTING_KEY_LIST = os.environ.get('RABBITMQ_ROUTING_KEY_LIST', None)
